@@ -1,10 +1,10 @@
 <?php
 
-interface factory
+interface Factory
 {
     public function getProduct($brand, $price);
 }
-abstract class product
+abstract class Product
 {
     protected string $brand;
     protected float $price;
@@ -18,16 +18,16 @@ abstract class product
     abstract public function getInfo();
 }
 
-class notebookFactory implements factory
+class NotebookFactory implements Factory
 {
 
     public function getProduct($brand, $price)
     {
-        return new notebook($brand, $price);
+        return new Notebook($brand, $price);
     }
 }
 
-class notebook extends product
+class Notebook extends Product
 {
 
     public function __construct($brand, $price)
@@ -42,7 +42,7 @@ class notebook extends product
     }
 }
 
-class phoneFactory implements factory
+class PhoneFactory implements Factory
 {
     public function getProduct($brand, $price)
     {
@@ -50,7 +50,7 @@ class phoneFactory implements factory
     }
 }
 
-class phone extends product
+class Phone extends Product
 {
     public function __construct($brand, $price)
     {
@@ -64,7 +64,7 @@ class phone extends product
 }
 
 
-$notebookFactory = new notebookFactory();
+$notebookFactory = new NotebookFactory();
 $notebook = $notebookFactory->getProduct('Lenovo', 333);
 $notebook->getInfo();
 
@@ -78,7 +78,7 @@ echo '</pre>';
 echo '<br>';
 echo '<br>';
 
-$phoneFactory = new phoneFactory();
+$phoneFactory = new PhoneFactory();
 $phone = $phoneFactory->getProduct('Samsung', 222);
 $phone->getInfo();
 
