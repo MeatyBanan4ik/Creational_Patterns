@@ -44,6 +44,8 @@ class dbBuilder implements Builder
     {
         $result = $this->text->query;
         $this->reset();
+        debug_print_backtrace();
+        echo '<br>';
         return $result;
     }
 }

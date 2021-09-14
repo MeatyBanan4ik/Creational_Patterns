@@ -27,7 +27,8 @@ final class Singleton
 
 
 
-function check($a, $b) {
+function check($a, $b)
+{
     if ($a == $b)
     {
         return 'True';
@@ -50,7 +51,8 @@ class Simple
 
     public function __construct()
     {
-        if ($this->instance == null) {
+        if ($this->instance == null)
+        {
             $this->instance = rand();
         }
         return $this->instance;
