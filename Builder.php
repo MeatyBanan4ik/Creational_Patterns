@@ -25,19 +25,16 @@ class dbBuilder implements Builder
     {
         $items = implode(', ', $items);
         $this->text->query .= "SELECT {$items} ";
-        return $this;
     }
 
     public function from($table)
     {
         $this->text->query .= "FROM {$table} ";
-        return $this;
     }
 
     public function where($expr)
     {
         $this->text->query .= "WHERE {$expr} ";
-        return $this;
     }
 
     public function get()
@@ -56,7 +53,10 @@ class Query
 }
 
 $builder = new dbBuilder();
-$query = $builder->select('item1', 'item2')->from('table')->where('id = "1"')->get();
+$query = $builder;
+$query->select('item1', 'item2');
+$query->from('tableName');
+$query->where('a = b');
 
-echo $query;
+echo $query->get();
 
