@@ -4,7 +4,7 @@ final class Singleton
 
     private static $instance = null;
 
-
+//тут комментарий
 
     public static function getInstance()
     {
