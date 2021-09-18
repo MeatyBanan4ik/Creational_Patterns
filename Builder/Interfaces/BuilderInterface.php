@@ -16,6 +16,6 @@ interface BuilderInterface
 
     public function setCategories(array $categories): BuilderInterface;
 
-    public function getBuilderProduct(): BuilderProduct;
+    public function getBuilderProduct();
 
 }
