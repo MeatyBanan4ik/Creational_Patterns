@@ -1,62 +1,49 @@
 <?php
 
-interface Builder
-{
-    public function select(...$items);
-    public function from($table);
-    public function where($expr);
-}
 
-class dbBuilder implements Builder
+namespace Classes;
+
+
+use Interfaces\BuilderInterface;
+
+class Builder implements BuilderInterface
 {
-    private $text;
+    private $builderProduct;
 
     public function __construct()
     {
-        $this->reset();
+        $this->create();
     }
 
-    public function reset()
+    public function create(): BuilderInterface
     {
-        $this->text = new Query();
+        $this->builderProduct = new BuilderProduct();
+        return $this;
     }
 
-    public function select(...$items)
+    public function setName(string $name): BuilderInterface
     {
-        $items = implode(', ', $items);
-        $this->text->query .= "SELECT {$items} ";
+        $this->builderProduct->name = $name;
+        return $this;
     }
 
-    public function from($table)
+    public function setDescription(string $description): BuilderInterface
     {
-        $this->text->query .= "FROM {$table} ";
+        $this->builderProduct->description = $description;
+        return $this;
     }
 
-    public function where($expr)
+    public function setCategories(array $categories): BuilderInterface
     {
-        $this->text->query .= "WHERE {$expr} ";
+        $this->builderProduct->categories = $categories;
+        return $this;
     }
 
-    public function get()
+    public function getBuilderProduct(): BuilderProduct
     {
-        $result = $this->text->query;
-        $this->reset();
-        debug_print_backtrace();
-        echo '<br>';
+        $result = $this->builderProduct;
+        $this->create();
+
         return $result;
     }
 }
-
-class Query
-{
-    public $query = '';
-}
-
-$builder = new dbBuilder();
-$query = $builder;
-$query->select('item1', 'item2');
-$query->from('tableName');
-$query->where('a = b');
-
-echo $query->get();
-
