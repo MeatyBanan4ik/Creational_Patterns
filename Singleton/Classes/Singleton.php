@@ -6,7 +6,7 @@ class Singleton
 {
     private static $instance;
 
-    public static function getInstance()
+    public static function getInstance(): Singleton
     {
         if (self::$instance == null)
         {
