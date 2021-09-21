@@ -6,6 +6,8 @@ class Singleton
 {
     private static $instance;
 
+    //Комментарий
+
     public static function getInstance(): Singleton
     {
         if (self::$instance == null)
